@@ -1,34 +1,29 @@
+from stats import get_num_words, get_character_count, get_sorted_list
+
 def main():
     text_file = "books/frankenstein.txt"
     book_as_string = get_book_as_string(text_file)
-    word_count = get_word_count(book_as_string)
+    word_count = get_num_words(book_as_string)
     character_count = get_character_count(book_as_string)
+    sorted_list = get_sorted_list(character_count)
     #print(book_as_string)
-    #print(word_count)
+    #print(f"{word_count} words found in the document")
     #print(character_count)
-
-
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {text_file}")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
+    for character_dict in sorted_list:
+        character = list(character_dict.keys())[0]
+        if character.isalpha():
+            count = character_dict[character]
+            print(f"{character}: {count}")
+    print('============= END ===============')
 
 def get_book_as_string(book_file):
     with open(book_file) as book:
         return book.read()
-        
-def get_word_count(book):
-    return len(book.split())
-
-def get_character_count(book):
-    lower_case_string = book.lower()
-    #character_set = list(lower_case_string)
-    character_dict = {}
-    for each_character in lower_case_string:
-        if each_character not in character_dict:
-            character_dict[each_character] = 1
-        else:
-            character_dict[each_character] += 1
-    return character_dict
-
-#def get_bookbot_report():
-
 
 
 main()
