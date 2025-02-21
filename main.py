@@ -1,7 +1,12 @@
 from stats import get_num_words, get_character_count, get_sorted_list
+import sys
+
+if len(sys.argv) < 2:
+    print("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
 
 def main():
-    text_file = "books/frankenstein.txt"
+    text_file = sys.argv[1]
     book_as_string = get_book_as_string(text_file)
     word_count = get_num_words(book_as_string)
     character_count = get_character_count(book_as_string)
